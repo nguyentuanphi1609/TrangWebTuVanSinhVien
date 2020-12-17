@@ -1,0 +1,45 @@
+﻿@model IEnumerable<TrangWebTuVanSinhVien.Models.QUESTIONQUEUE>
+
+@{
+    ViewBag.Title = "Answer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    <table class="table table-dark table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Câu Hỏi</th>
+                <th>Nhập câu trả lời</th>
+                <th>Trả lời</th>
+                <th>Xóa</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+
+                <tr>
+                    <td name="id">@item.QuestionID</td>
+                    <td>@item.Question</td>
+                    <td><input type="text" name="Answer.@item.QuestionID.ToString()"/></td>
+                    <td>
+                        @Html.ActionLink("Trả lời", "Reply", new { id = item.QuestionID})
+                    </td>
+                    <td>
+                        Xóa
+                    </td>
+                </tr>
+                
+            }
+        </tbody>
+
+
+
+    </table>
+}
+
+
+

@@ -1,0 +1,107 @@
+﻿@model TrangWebTuVanSinhVien.Models.USER
+
+@{
+    ViewBag.Title = "DangKy";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>DangKy</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>USER</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Name, "Họ và tên", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+
+        <label for="birthday" class="control-label col-md-2">Ngày sinh</label>
+        <div class="col-md-10">
+            <input type="date" id="birthday" name="DateOfBirth" class="form-control" />
+        </div>
+
+    </div>
+
+    <div class="form-group">
+
+        <label for="confirm" class="control-label col-md-2">Giới tính</label>
+        <div class="col-md-10">
+            <select id="sex" name="sex" class="form-control">
+                <option>Nam</option>
+                <option>Nữ</option>
+            </select>
+        </div>
+
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Address, "Địa chỉ", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Email, "Email", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Phone, "Số điện thoại", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.PassWord, "Mật khẩu", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.PassWord, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.PassWord, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+
+        <label for="confirm" class="control-label col-md-2">Nhập lại mật khẩu</label>
+        <div class="col-md-10">
+            <input type="text" id="confirm" name="confirm" class="form-control" />
+        </div>
+
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Đăng ký" class="btn btn-default" id="btnDangKy" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+<script>
+    $('#btnDangKy').click(function () {
+        alert("@ViewBag.message");
+    })
+
+</script>

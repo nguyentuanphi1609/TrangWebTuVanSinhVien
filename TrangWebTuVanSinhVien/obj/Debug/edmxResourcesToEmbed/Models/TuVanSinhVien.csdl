@@ -1,0 +1,344 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="WebTuVanSinhVienModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="ADMIN">
+    <Key>
+      <PropertyRef Name="IDSC" />
+    </Key>
+    <Property Name="IDSC" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ScoreChange" Type="Double" />
+    <Property Name="DateOfSC" Type="DateTime" Precision="0" />
+    <Property Name="Reason" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IDUser" Type="Int32" />
+    <NavigationProperty Name="USER" Relationship="Self.FK__ADMIN__IDUser__32E0915F" FromRole="ADMIN" ToRole="USERS" />
+  </EntityType>
+  <EntityType Name="FIELD">
+    <Key>
+      <PropertyRef Name="IDField" />
+    </Key>
+    <Property Name="IDField" Type="Int32" Nullable="false" />
+    <Property Name="NameOfField" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="MANAGERs" Relationship="Self.FK__MANAGER__IDField__300424B4" FromRole="FIELD" ToRole="MANAGER" />
+    <NavigationProperty Name="QUESTIONANDANSWERs" Relationship="Self.FK__QUESTIONA__IDFie__3A81B327" FromRole="FIELD" ToRole="QUESTIONANDANSWER" />
+    <NavigationProperty Name="QUESTIONNOTCHECKs" Relationship="Self.FK__QUESTIONN__IDFie__37A5467C" FromRole="FIELD" ToRole="QUESTIONNOTCHECK" />
+    <NavigationProperty Name="TEACHERs" Relationship="Self.FK__TEACHER__IDField__2C3393D0" FromRole="FIELD" ToRole="TEACHER" />
+  </EntityType>
+  <EntityType Name="MANAGER">
+    <Key>
+      <PropertyRef Name="IDManage" />
+    </Key>
+    <Property Name="IDManage" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Score" Type="Double" />
+    <Property Name="IDUser" Type="Int32" />
+    <Property Name="IDField" Type="Int32" />
+    <NavigationProperty Name="FIELD" Relationship="Self.FK__MANAGER__IDField__300424B4" FromRole="MANAGER" ToRole="FIELD" />
+    <NavigationProperty Name="USER" Relationship="Self.FK__MANAGER__IDUser__2F10007B" FromRole="MANAGER" ToRole="USERS" />
+  </EntityType>
+  <EntityType Name="QUESTIONANDANSWER">
+    <Key>
+      <PropertyRef Name="QuestionID" />
+    </Key>
+    <Property Name="QuestionID" Type="Int32" Nullable="false" />
+    <Property Name="Answer" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="TimeOut" Type="Time" Precision="7" />
+    <Property Name="DateOfAnswer" Type="DateTime" Precision="0" />
+    <Property Name="IDField" Type="Int32" />
+    <NavigationProperty Name="FIELD" Relationship="Self.FK__QUESTIONA__IDFie__3A81B327" FromRole="QUESTIONANDANSWER" ToRole="FIELD" />
+    <NavigationProperty Name="QUESTIONNOTCHECK" Relationship="Self.FK__QUESTIONA__Quest__3B75D760" FromRole="QUESTIONANDANSWER" ToRole="QUESTIONNOTCHECK" />
+  </EntityType>
+  <EntityType Name="QUESTIONNOTCHECK">
+    <Key>
+      <PropertyRef Name="QuestionID" />
+    </Key>
+    <Property Name="QuestionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDStu" Type="Int32" />
+    <Property Name="IDUser" Type="Int32" />
+    <Property Name="IDField" Type="Int32" />
+    <NavigationProperty Name="FIELD" Relationship="Self.FK__QUESTIONN__IDFie__37A5467C" FromRole="QUESTIONNOTCHECK" ToRole="FIELD" />
+    <NavigationProperty Name="QUESTIONANDANSWER" Relationship="Self.FK__QUESTIONA__Quest__3B75D760" FromRole="QUESTIONNOTCHECK" ToRole="QUESTIONANDANSWER" />
+    <NavigationProperty Name="STUDENT" Relationship="Self.FK__QUESTIONN__IDStu__35BCFE0A" FromRole="QUESTIONNOTCHECK" ToRole="STUDENT" />
+    <NavigationProperty Name="USER" Relationship="Self.FK__QUESTIONN__IDUse__36B12243" FromRole="QUESTIONNOTCHECK" ToRole="USERS" />
+    <NavigationProperty Name="QUESTIONQUEUEs" Relationship="Self.FK__QUESTIONQ__Quest__3E52440B" FromRole="QUESTIONNOTCHECK" ToRole="QUESTIONQUEUE" />
+    <Property Name="Question" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="QUESTIONQUEUE">
+    <Key>
+      <PropertyRef Name="IDTea" />
+    </Key>
+    <Property Name="QuestionID" Type="Int32" />
+    <Property Name="DateOfModeration" Type="DateTime" Precision="0" />
+    <Property Name="IDTea" Type="Int32" Nullable="false" />
+    <Property Name="IDUser" Type="Int32" />
+    <NavigationProperty Name="QUESTIONNOTCHECK" Relationship="Self.FK__QUESTIONQ__Quest__3E52440B" FromRole="QUESTIONQUEUE" ToRole="QUESTIONNOTCHECK" />
+    <NavigationProperty Name="USER" Relationship="Self.FK__QUESTIONQ__IDUse__3F466844" FromRole="QUESTIONQUEUE" ToRole="USERS" />
+  </EntityType>
+  <EntityType Name="STUDENT">
+    <Key>
+      <PropertyRef Name="IDStu" />
+    </Key>
+    <Property Name="IDStu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDUser" Type="Int32" />
+    <NavigationProperty Name="QUESTIONNOTCHECKs" Relationship="Self.FK__QUESTIONN__IDStu__35BCFE0A" FromRole="STUDENT" ToRole="QUESTIONNOTCHECK" />
+    <NavigationProperty Name="USER" Relationship="Self.FK__STUDENT__IDUser__286302EC" FromRole="STUDENT" ToRole="USERS" />
+  </EntityType>
+  <EntityType Name="TEACHER">
+    <Key>
+      <PropertyRef Name="IDTea" />
+    </Key>
+    <Property Name="IDTea" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Score" Type="Double" />
+    <Property Name="IDUser" Type="Int32" />
+    <Property Name="IDField" Type="Int32" />
+    <NavigationProperty Name="FIELD" Relationship="Self.FK__TEACHER__IDField__2C3393D0" FromRole="TEACHER" ToRole="FIELD" />
+    <NavigationProperty Name="USER" Relationship="Self.FK__TEACHER__IDUser__2B3F6F97" FromRole="TEACHER" ToRole="USERS" />
+  </EntityType>
+  <EntityType Name="USER">
+    <Key>
+      <PropertyRef Name="IDUser" />
+    </Key>
+    <Property Name="IDUser" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="DateOfBirth" Type="DateTime" Precision="0" />
+    <Property Name="Sex" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="12" FixedLength="true" Unicode="false" />
+    <Property Name="Permission" Type="String" MaxLength="200" FixedLength="true" Unicode="false" />
+    <Property Name="PassWord" Type="String" MaxLength="300" FixedLength="true" Unicode="false" />
+    <NavigationProperty Name="ADMINs" Relationship="Self.FK__ADMIN__IDUser__32E0915F" FromRole="USERS" ToRole="ADMIN" />
+    <NavigationProperty Name="MANAGERs" Relationship="Self.FK__MANAGER__IDUser__2F10007B" FromRole="USERS" ToRole="MANAGER" />
+    <NavigationProperty Name="QUESTIONNOTCHECKs" Relationship="Self.FK__QUESTIONN__IDUse__36B12243" FromRole="USERS" ToRole="QUESTIONNOTCHECK" />
+    <NavigationProperty Name="QUESTIONQUEUEs" Relationship="Self.FK__QUESTIONQ__IDUse__3F466844" FromRole="USERS" ToRole="QUESTIONQUEUE" />
+    <NavigationProperty Name="STUDENTs" Relationship="Self.FK__STUDENT__IDUser__286302EC" FromRole="USERS" ToRole="STUDENT" />
+    <NavigationProperty Name="TEACHERs" Relationship="Self.FK__TEACHER__IDUser__2B3F6F97" FromRole="USERS" ToRole="TEACHER" />
+  </EntityType>
+  <Association Name="FK__ADMIN__IDUser__32E0915F">
+    <End Role="USERS" Type="Self.USER" Multiplicity="0..1" />
+    <End Role="ADMIN" Type="Self.ADMIN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERS">
+        <PropertyRef Name="IDUser" />
+      </Principal>
+      <Dependent Role="ADMIN">
+        <PropertyRef Name="IDUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__MANAGER__IDField__300424B4">
+    <End Role="FIELD" Type="Self.FIELD" Multiplicity="0..1" />
+    <End Role="MANAGER" Type="Self.MANAGER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FIELD">
+        <PropertyRef Name="IDField" />
+      </Principal>
+      <Dependent Role="MANAGER">
+        <PropertyRef Name="IDField" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__QUESTIONA__IDFie__3A81B327">
+    <End Role="FIELD" Type="Self.FIELD" Multiplicity="0..1" />
+    <End Role="QUESTIONANDANSWER" Type="Self.QUESTIONANDANSWER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FIELD">
+        <PropertyRef Name="IDField" />
+      </Principal>
+      <Dependent Role="QUESTIONANDANSWER">
+        <PropertyRef Name="IDField" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__QUESTIONN__IDFie__37A5467C">
+    <End Role="FIELD" Type="Self.FIELD" Multiplicity="0..1" />
+    <End Role="QUESTIONNOTCHECK" Type="Self.QUESTIONNOTCHECK" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FIELD">
+        <PropertyRef Name="IDField" />
+      </Principal>
+      <Dependent Role="QUESTIONNOTCHECK">
+        <PropertyRef Name="IDField" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TEACHER__IDField__2C3393D0">
+    <End Role="FIELD" Type="Self.FIELD" Multiplicity="0..1" />
+    <End Role="TEACHER" Type="Self.TEACHER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FIELD">
+        <PropertyRef Name="IDField" />
+      </Principal>
+      <Dependent Role="TEACHER">
+        <PropertyRef Name="IDField" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__MANAGER__IDUser__2F10007B">
+    <End Role="USERS" Type="Self.USER" Multiplicity="0..1" />
+    <End Role="MANAGER" Type="Self.MANAGER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERS">
+        <PropertyRef Name="IDUser" />
+      </Principal>
+      <Dependent Role="MANAGER">
+        <PropertyRef Name="IDUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__QUESTIONA__Quest__3B75D760">
+    <End Role="QUESTIONNOTCHECK" Type="Self.QUESTIONNOTCHECK" Multiplicity="1" />
+    <End Role="QUESTIONANDANSWER" Type="Self.QUESTIONANDANSWER" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="QUESTIONNOTCHECK">
+        <PropertyRef Name="QuestionID" />
+      </Principal>
+      <Dependent Role="QUESTIONANDANSWER">
+        <PropertyRef Name="QuestionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__QUESTIONN__IDStu__35BCFE0A">
+    <End Role="STUDENT" Type="Self.STUDENT" Multiplicity="0..1" />
+    <End Role="QUESTIONNOTCHECK" Type="Self.QUESTIONNOTCHECK" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STUDENT">
+        <PropertyRef Name="IDStu" />
+      </Principal>
+      <Dependent Role="QUESTIONNOTCHECK">
+        <PropertyRef Name="IDStu" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__QUESTIONN__IDUse__36B12243">
+    <End Role="USERS" Type="Self.USER" Multiplicity="0..1" />
+    <End Role="QUESTIONNOTCHECK" Type="Self.QUESTIONNOTCHECK" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERS">
+        <PropertyRef Name="IDUser" />
+      </Principal>
+      <Dependent Role="QUESTIONNOTCHECK">
+        <PropertyRef Name="IDUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__QUESTIONQ__Quest__3E52440B">
+    <End Role="QUESTIONNOTCHECK" Type="Self.QUESTIONNOTCHECK" Multiplicity="0..1" />
+    <End Role="QUESTIONQUEUE" Type="Self.QUESTIONQUEUE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QUESTIONNOTCHECK">
+        <PropertyRef Name="QuestionID" />
+      </Principal>
+      <Dependent Role="QUESTIONQUEUE">
+        <PropertyRef Name="QuestionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__QUESTIONQ__IDUse__3F466844">
+    <End Role="USERS" Type="Self.USER" Multiplicity="0..1" />
+    <End Role="QUESTIONQUEUE" Type="Self.QUESTIONQUEUE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERS">
+        <PropertyRef Name="IDUser" />
+      </Principal>
+      <Dependent Role="QUESTIONQUEUE">
+        <PropertyRef Name="IDUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__STUDENT__IDUser__286302EC">
+    <End Role="USERS" Type="Self.USER" Multiplicity="0..1" />
+    <End Role="STUDENT" Type="Self.STUDENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERS">
+        <PropertyRef Name="IDUser" />
+      </Principal>
+      <Dependent Role="STUDENT">
+        <PropertyRef Name="IDUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TEACHER__IDUser__2B3F6F97">
+    <End Role="USERS" Type="Self.USER" Multiplicity="0..1" />
+    <End Role="TEACHER" Type="Self.TEACHER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERS">
+        <PropertyRef Name="IDUser" />
+      </Principal>
+      <Dependent Role="TEACHER">
+        <PropertyRef Name="IDUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DBTuVanSinhVien" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ADMINs" EntityType="Self.ADMIN" />
+    <EntitySet Name="FIELDs" EntityType="Self.FIELD" />
+    <EntitySet Name="MANAGERs" EntityType="Self.MANAGER" />
+    <EntitySet Name="QUESTIONANDANSWERs" EntityType="Self.QUESTIONANDANSWER" />
+    <EntitySet Name="QUESTIONNOTCHECKs" EntityType="Self.QUESTIONNOTCHECK" />
+    <EntitySet Name="QUESTIONQUEUEs" EntityType="Self.QUESTIONQUEUE" />
+    <EntitySet Name="STUDENTs" EntityType="Self.STUDENT" />
+    <EntitySet Name="TEACHERs" EntityType="Self.TEACHER" />
+    <EntitySet Name="USERS" EntityType="Self.USER" />
+    <AssociationSet Name="FK__ADMIN__IDUser__32E0915F" Association="Self.FK__ADMIN__IDUser__32E0915F">
+      <End Role="USERS" EntitySet="USERS" />
+      <End Role="ADMIN" EntitySet="ADMINs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__MANAGER__IDField__300424B4" Association="Self.FK__MANAGER__IDField__300424B4">
+      <End Role="FIELD" EntitySet="FIELDs" />
+      <End Role="MANAGER" EntitySet="MANAGERs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__QUESTIONA__IDFie__3A81B327" Association="Self.FK__QUESTIONA__IDFie__3A81B327">
+      <End Role="FIELD" EntitySet="FIELDs" />
+      <End Role="QUESTIONANDANSWER" EntitySet="QUESTIONANDANSWERs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__QUESTIONN__IDFie__37A5467C" Association="Self.FK__QUESTIONN__IDFie__37A5467C">
+      <End Role="FIELD" EntitySet="FIELDs" />
+      <End Role="QUESTIONNOTCHECK" EntitySet="QUESTIONNOTCHECKs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TEACHER__IDField__2C3393D0" Association="Self.FK__TEACHER__IDField__2C3393D0">
+      <End Role="FIELD" EntitySet="FIELDs" />
+      <End Role="TEACHER" EntitySet="TEACHERs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__MANAGER__IDUser__2F10007B" Association="Self.FK__MANAGER__IDUser__2F10007B">
+      <End Role="USERS" EntitySet="USERS" />
+      <End Role="MANAGER" EntitySet="MANAGERs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__QUESTIONA__Quest__3B75D760" Association="Self.FK__QUESTIONA__Quest__3B75D760">
+      <End Role="QUESTIONNOTCHECK" EntitySet="QUESTIONNOTCHECKs" />
+      <End Role="QUESTIONANDANSWER" EntitySet="QUESTIONANDANSWERs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__QUESTIONN__IDStu__35BCFE0A" Association="Self.FK__QUESTIONN__IDStu__35BCFE0A">
+      <End Role="STUDENT" EntitySet="STUDENTs" />
+      <End Role="QUESTIONNOTCHECK" EntitySet="QUESTIONNOTCHECKs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__QUESTIONN__IDUse__36B12243" Association="Self.FK__QUESTIONN__IDUse__36B12243">
+      <End Role="USERS" EntitySet="USERS" />
+      <End Role="QUESTIONNOTCHECK" EntitySet="QUESTIONNOTCHECKs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__QUESTIONQ__Quest__3E52440B" Association="Self.FK__QUESTIONQ__Quest__3E52440B">
+      <End Role="QUESTIONNOTCHECK" EntitySet="QUESTIONNOTCHECKs" />
+      <End Role="QUESTIONQUEUE" EntitySet="QUESTIONQUEUEs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__QUESTIONQ__IDUse__3F466844" Association="Self.FK__QUESTIONQ__IDUse__3F466844">
+      <End Role="USERS" EntitySet="USERS" />
+      <End Role="QUESTIONQUEUE" EntitySet="QUESTIONQUEUEs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__STUDENT__IDUser__286302EC" Association="Self.FK__STUDENT__IDUser__286302EC">
+      <End Role="USERS" EntitySet="USERS" />
+      <End Role="STUDENT" EntitySet="STUDENTs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TEACHER__IDUser__2B3F6F97" Association="Self.FK__TEACHER__IDUser__2B3F6F97">
+      <End Role="USERS" EntitySet="USERS" />
+      <End Role="TEACHER" EntitySet="TEACHERs" />
+    </AssociationSet>
+    <EntitySet Name="sysdiagrams" EntityType="WebTuVanSinhVienModel.sysdiagram" />
+  </EntityContainer>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+</Schema>

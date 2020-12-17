@@ -1,0 +1,41 @@
+﻿@model TrangWebTuVanSinhVien.Models.STUDENT
+
+@{
+    ViewBag.Title = "Ask";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Ask</h2>
+<div>
+    <div id="Ask">
+        @using (Html.BeginForm()) { 
+            @Html.AntiForgeryToken()
+            <div id="field" class="form-group">
+                <label for="dropdownlist" class="control-label col-md-2">Lĩnh vực</label>
+                <div class="col-md-10">
+                    <select id="dropdownlist" class="form-control" name="dropdownlist">
+                        @foreach (var lst in ViewBag.listfield)
+                        {
+                            <option>@lst</option>
+                            ;
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <div id="question" class="form-group">
+                <label for="askcontent" class="control-label col-md-2">Câu hỏi</label>
+                <div class="col-md-10"><input type="text" id="askcontent" class="form-control" name="askcontent" /></div>
+            </div>
+
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Đặt câu hỏi" class="btn btn-default" />
+            </div>
+        }
+        
+    </div>
+</div>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

@@ -1,0 +1,318 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="WebTuVanSinhVienModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ADMIN">
+    <Key>
+      <PropertyRef Name="IDSC" />
+    </Key>
+    <Property Name="IDSC" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ScoreChange" Type="float" />
+    <Property Name="DateOfSC" Type="date" />
+    <Property Name="Reason" Type="nvarchar(max)" />
+    <Property Name="IDUser" Type="int" />
+  </EntityType>
+  <EntityType Name="FIELD">
+    <Key>
+      <PropertyRef Name="IDField" />
+    </Key>
+    <Property Name="IDField" Type="int" Nullable="false" />
+    <Property Name="NameOfField" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="MANAGER">
+    <Key>
+      <PropertyRef Name="IDManage" />
+    </Key>
+    <Property Name="IDManage" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Score" Type="float" />
+    <Property Name="IDUser" Type="int" />
+    <Property Name="IDField" Type="int" />
+  </EntityType>
+  <EntityType Name="QUESTIONANDANSWER">
+    <Key>
+      <PropertyRef Name="QuestionID" />
+    </Key>
+    <Property Name="QuestionID" Type="int" Nullable="false" />
+    <Property Name="Answer" Type="nvarchar(max)" />
+    <Property Name="TimeOut" Type="time" Precision="7" />
+    <Property Name="DateOfAnswer" Type="date" />
+    <Property Name="IDField" Type="int" />
+  </EntityType>
+  <EntityType Name="QUESTIONNOTCHECK">
+    <Key>
+      <PropertyRef Name="QuestionID" />
+    </Key>
+    <Property Name="QuestionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDStu" Type="int" />
+    <Property Name="IDUser" Type="int" />
+    <Property Name="IDField" Type="int" />
+    <Property Name="Question" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="QUESTIONQUEUE">
+    <Key>
+      <PropertyRef Name="IDTea" />
+    </Key>
+    <Property Name="QuestionID" Type="int" />
+    <Property Name="DateOfModeration" Type="date" />
+    <Property Name="IDTea" Type="int" Nullable="false" />
+    <Property Name="IDUser" Type="int" />
+  </EntityType>
+  <EntityType Name="STUDENT">
+    <Key>
+      <PropertyRef Name="IDStu" />
+    </Key>
+    <Property Name="IDStu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDUser" Type="int" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="TEACHER">
+    <Key>
+      <PropertyRef Name="IDTea" />
+    </Key>
+    <Property Name="IDTea" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Score" Type="float" />
+    <Property Name="IDUser" Type="int" />
+    <Property Name="IDField" Type="int" />
+  </EntityType>
+  <EntityType Name="USERS">
+    <Key>
+      <PropertyRef Name="IDUser" />
+    </Key>
+    <Property Name="IDUser" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="200" />
+    <Property Name="DateOfBirth" Type="date" />
+    <Property Name="Sex" Type="char" MaxLength="3" />
+    <Property Name="Address" Type="nvarchar(max)" />
+    <Property Name="Email" Type="nvarchar(max)" />
+    <Property Name="Phone" Type="char" MaxLength="12" />
+    <Property Name="Permission" Type="char" MaxLength="200" />
+    <Property Name="PassWord" Type="char" MaxLength="300" />
+  </EntityType>
+  <Association Name="FK__ADMIN__IDUser__32E0915F">
+    <End Role="USERS" Type="Self.USERS" Multiplicity="0..1" />
+    <End Role="ADMIN" Type="Self.ADMIN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERS">
+        <PropertyRef Name="IDUser" />
+      </Principal>
+      <Dependent Role="ADMIN">
+        <PropertyRef Name="IDUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__MANAGER__IDField__300424B4">
+    <End Role="FIELD" Type="Self.FIELD" Multiplicity="0..1" />
+    <End Role="MANAGER" Type="Self.MANAGER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FIELD">
+        <PropertyRef Name="IDField" />
+      </Principal>
+      <Dependent Role="MANAGER">
+        <PropertyRef Name="IDField" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__MANAGER__IDUser__2F10007B">
+    <End Role="USERS" Type="Self.USERS" Multiplicity="0..1" />
+    <End Role="MANAGER" Type="Self.MANAGER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERS">
+        <PropertyRef Name="IDUser" />
+      </Principal>
+      <Dependent Role="MANAGER">
+        <PropertyRef Name="IDUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__QUESTIONA__IDFie__3A81B327">
+    <End Role="FIELD" Type="Self.FIELD" Multiplicity="0..1" />
+    <End Role="QUESTIONANDANSWER" Type="Self.QUESTIONANDANSWER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FIELD">
+        <PropertyRef Name="IDField" />
+      </Principal>
+      <Dependent Role="QUESTIONANDANSWER">
+        <PropertyRef Name="IDField" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__QUESTIONA__Quest__3B75D760">
+    <End Role="QUESTIONNOTCHECK" Type="Self.QUESTIONNOTCHECK" Multiplicity="1" />
+    <End Role="QUESTIONANDANSWER" Type="Self.QUESTIONANDANSWER" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="QUESTIONNOTCHECK">
+        <PropertyRef Name="QuestionID" />
+      </Principal>
+      <Dependent Role="QUESTIONANDANSWER">
+        <PropertyRef Name="QuestionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__QUESTIONN__IDFie__37A5467C">
+    <End Role="FIELD" Type="Self.FIELD" Multiplicity="0..1" />
+    <End Role="QUESTIONNOTCHECK" Type="Self.QUESTIONNOTCHECK" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FIELD">
+        <PropertyRef Name="IDField" />
+      </Principal>
+      <Dependent Role="QUESTIONNOTCHECK">
+        <PropertyRef Name="IDField" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__QUESTIONN__IDStu__35BCFE0A">
+    <End Role="STUDENT" Type="Self.STUDENT" Multiplicity="0..1" />
+    <End Role="QUESTIONNOTCHECK" Type="Self.QUESTIONNOTCHECK" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STUDENT">
+        <PropertyRef Name="IDStu" />
+      </Principal>
+      <Dependent Role="QUESTIONNOTCHECK">
+        <PropertyRef Name="IDStu" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__QUESTIONN__IDUse__36B12243">
+    <End Role="USERS" Type="Self.USERS" Multiplicity="0..1" />
+    <End Role="QUESTIONNOTCHECK" Type="Self.QUESTIONNOTCHECK" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERS">
+        <PropertyRef Name="IDUser" />
+      </Principal>
+      <Dependent Role="QUESTIONNOTCHECK">
+        <PropertyRef Name="IDUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__QUESTIONQ__IDUse__3F466844">
+    <End Role="USERS" Type="Self.USERS" Multiplicity="0..1" />
+    <End Role="QUESTIONQUEUE" Type="Self.QUESTIONQUEUE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERS">
+        <PropertyRef Name="IDUser" />
+      </Principal>
+      <Dependent Role="QUESTIONQUEUE">
+        <PropertyRef Name="IDUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__QUESTIONQ__Quest__3E52440B">
+    <End Role="QUESTIONNOTCHECK" Type="Self.QUESTIONNOTCHECK" Multiplicity="0..1" />
+    <End Role="QUESTIONQUEUE" Type="Self.QUESTIONQUEUE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QUESTIONNOTCHECK">
+        <PropertyRef Name="QuestionID" />
+      </Principal>
+      <Dependent Role="QUESTIONQUEUE">
+        <PropertyRef Name="QuestionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__STUDENT__IDUser__286302EC">
+    <End Role="USERS" Type="Self.USERS" Multiplicity="0..1" />
+    <End Role="STUDENT" Type="Self.STUDENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERS">
+        <PropertyRef Name="IDUser" />
+      </Principal>
+      <Dependent Role="STUDENT">
+        <PropertyRef Name="IDUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TEACHER__IDField__2C3393D0">
+    <End Role="FIELD" Type="Self.FIELD" Multiplicity="0..1" />
+    <End Role="TEACHER" Type="Self.TEACHER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FIELD">
+        <PropertyRef Name="IDField" />
+      </Principal>
+      <Dependent Role="TEACHER">
+        <PropertyRef Name="IDField" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TEACHER__IDUser__2B3F6F97">
+    <End Role="USERS" Type="Self.USERS" Multiplicity="0..1" />
+    <End Role="TEACHER" Type="Self.TEACHER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERS">
+        <PropertyRef Name="IDUser" />
+      </Principal>
+      <Dependent Role="TEACHER">
+        <PropertyRef Name="IDUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="WebTuVanSinhVienModelStoreContainer">
+    <EntitySet Name="ADMIN" EntityType="Self.ADMIN" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FIELD" EntityType="Self.FIELD" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MANAGER" EntityType="Self.MANAGER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="QUESTIONANDANSWER" EntityType="Self.QUESTIONANDANSWER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="QUESTIONNOTCHECK" EntityType="Self.QUESTIONNOTCHECK" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="QUESTIONQUEUE" EntityType="Self.QUESTIONQUEUE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="STUDENT" EntityType="Self.STUDENT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TEACHER" EntityType="Self.TEACHER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="USERS" EntityType="Self.USERS" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__ADMIN__IDUser__32E0915F" Association="Self.FK__ADMIN__IDUser__32E0915F">
+      <End Role="USERS" EntitySet="USERS" />
+      <End Role="ADMIN" EntitySet="ADMIN" />
+    </AssociationSet>
+    <AssociationSet Name="FK__MANAGER__IDField__300424B4" Association="Self.FK__MANAGER__IDField__300424B4">
+      <End Role="FIELD" EntitySet="FIELD" />
+      <End Role="MANAGER" EntitySet="MANAGER" />
+    </AssociationSet>
+    <AssociationSet Name="FK__MANAGER__IDUser__2F10007B" Association="Self.FK__MANAGER__IDUser__2F10007B">
+      <End Role="USERS" EntitySet="USERS" />
+      <End Role="MANAGER" EntitySet="MANAGER" />
+    </AssociationSet>
+    <AssociationSet Name="FK__QUESTIONA__IDFie__3A81B327" Association="Self.FK__QUESTIONA__IDFie__3A81B327">
+      <End Role="FIELD" EntitySet="FIELD" />
+      <End Role="QUESTIONANDANSWER" EntitySet="QUESTIONANDANSWER" />
+    </AssociationSet>
+    <AssociationSet Name="FK__QUESTIONA__Quest__3B75D760" Association="Self.FK__QUESTIONA__Quest__3B75D760">
+      <End Role="QUESTIONNOTCHECK" EntitySet="QUESTIONNOTCHECK" />
+      <End Role="QUESTIONANDANSWER" EntitySet="QUESTIONANDANSWER" />
+    </AssociationSet>
+    <AssociationSet Name="FK__QUESTIONN__IDFie__37A5467C" Association="Self.FK__QUESTIONN__IDFie__37A5467C">
+      <End Role="FIELD" EntitySet="FIELD" />
+      <End Role="QUESTIONNOTCHECK" EntitySet="QUESTIONNOTCHECK" />
+    </AssociationSet>
+    <AssociationSet Name="FK__QUESTIONN__IDStu__35BCFE0A" Association="Self.FK__QUESTIONN__IDStu__35BCFE0A">
+      <End Role="STUDENT" EntitySet="STUDENT" />
+      <End Role="QUESTIONNOTCHECK" EntitySet="QUESTIONNOTCHECK" />
+    </AssociationSet>
+    <AssociationSet Name="FK__QUESTIONN__IDUse__36B12243" Association="Self.FK__QUESTIONN__IDUse__36B12243">
+      <End Role="USERS" EntitySet="USERS" />
+      <End Role="QUESTIONNOTCHECK" EntitySet="QUESTIONNOTCHECK" />
+    </AssociationSet>
+    <AssociationSet Name="FK__QUESTIONQ__IDUse__3F466844" Association="Self.FK__QUESTIONQ__IDUse__3F466844">
+      <End Role="USERS" EntitySet="USERS" />
+      <End Role="QUESTIONQUEUE" EntitySet="QUESTIONQUEUE" />
+    </AssociationSet>
+    <AssociationSet Name="FK__QUESTIONQ__Quest__3E52440B" Association="Self.FK__QUESTIONQ__Quest__3E52440B">
+      <End Role="QUESTIONNOTCHECK" EntitySet="QUESTIONNOTCHECK" />
+      <End Role="QUESTIONQUEUE" EntitySet="QUESTIONQUEUE" />
+    </AssociationSet>
+    <AssociationSet Name="FK__STUDENT__IDUser__286302EC" Association="Self.FK__STUDENT__IDUser__286302EC">
+      <End Role="USERS" EntitySet="USERS" />
+      <End Role="STUDENT" EntitySet="STUDENT" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TEACHER__IDField__2C3393D0" Association="Self.FK__TEACHER__IDField__2C3393D0">
+      <End Role="FIELD" EntitySet="FIELD" />
+      <End Role="TEACHER" EntitySet="TEACHER" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TEACHER__IDUser__2B3F6F97" Association="Self.FK__TEACHER__IDUser__2B3F6F97">
+      <End Role="USERS" EntitySet="USERS" />
+      <End Role="TEACHER" EntitySet="TEACHER" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
