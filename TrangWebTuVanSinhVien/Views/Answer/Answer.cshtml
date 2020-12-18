@@ -24,9 +24,9 @@
                 <tr>
                     <td name="id">@item.QuestionID</td>
                     <td>@item.Question</td>
-                    <td><input type="text" name="Answer.@item.QuestionID.ToString()"/></td>
+                    <td><input type="text" name="Answer.@item.QuestionID.ToString()" class="txtAnswer"/></td>
                     <td>
-                        @Html.ActionLink("Trả lời", "Reply", new { id = item.QuestionID})
+                        @Html.ActionLink("Trả lời", "Reply", new { id = item.QuestionID},new { @id="Reply"})
                     </td>
                     <td>
                         Xóa
@@ -40,6 +40,18 @@
 
     </table>
 }
+<script>
+    $('#Reply').click(function () {
+        var answer = $('.txtAnswer').val();
+        $.ajax({
+            type: 'POST',
+            data: {
+                answer: answer
+            },
+            url:'@Url.Action("Reply","Answer")'
+        })
+    })
 
+</script>
 
 

@@ -23,7 +23,7 @@ namespace TrangWebTuVanSinhVien.Controllers
             return View(qQ);
         }
 
-        public ActionResult Reply(int id)
+        public ActionResult Reply(int id,string answer)
         {
             QUESTIONANDANSWER qa = new QUESTIONANDANSWER();
             using (var db = new DBTuVanSinhVien())
