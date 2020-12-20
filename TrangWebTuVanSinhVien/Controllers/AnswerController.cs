@@ -23,7 +23,7 @@ namespace TrangWebTuVanSinhVien.Controllers
             return View(qQ);
         }
 
-        public ActionResult Reply(int id,string answer)
+        public ActionResult Reply(int id,string answer = "")
         {
             QUESTIONANDANSWER qa = new QUESTIONANDANSWER();
             using (var db = new DBTuVanSinhVien())
@@ -31,11 +31,21 @@ namespace TrangWebTuVanSinhVien.Controllers
                 var x = (from u in db.QUESTIONQUEUEs
                          where u.QuestionID == id
                          select new { u.Question, u.IDField }).FirstOrDefault();
-                qa.QuestionID = id;
-                qa.Question = x.Question;
-                qa.IDField = x.IDField;
-                qa.Answer = ViewBag.answer;
+                if(x != null)
+                {
+                    qa.QuestionID = id;
+                    qa.Question = x.Question;
+                    qa.IDField = x.IDField;
+                    qa.Answer = answer;
+                    qa.DateOfAnswer = DateTime.Now;
+                    db.QUESTIONANDANSWERs.Add(qa);
 
+                    var y = (from m in db.QUESTIONQUEUEs
+                             where m.QuestionID == id
+                             select m).FirstOrDefault<QUESTIONQUEUE>();
+                    db.QUESTIONQUEUEs.Remove(y);
+                    db.SaveChanges();
+                }    
             }
 
             List<QUESTIONQUEUE> qQ = new List<QUESTIONQUEUE>();

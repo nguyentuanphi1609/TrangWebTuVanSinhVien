@@ -19,15 +19,32 @@ namespace TrangWebTuVanSinhVien.Controllers
         [HttpGet]
         public ActionResult Ask()
         {
+            List<QUESTIONANDANSWER> lstQ = new List<QUESTIONANDANSWER>();
+            int iduser = (int)HttpContext.Session["IDUser"];
             using(var db = new DBTuVanSinhVien())
             {
                 var ls = from u in db.FIELDs
                          select u.NameOfField;
                 ViewBag.listfield = ls.ToList();
+
+                var x = (from m in db.QUESTIONNOTCHECKs
+                         where m.IDUser == iduser
+                         select m.QuestionID).ToList();
+                
+                foreach(var i in x)
+                {
+                    var y = (from n in db.QUESTIONANDANSWERs
+                             where n.QuestionID == i
+                             select n).FirstOrDefault<QUESTIONANDANSWER>();
+                    if(y != null)
+                    {
+                        lstQ.Add(y);
+                    }
+                }
                 
             }
             
-            return View();
+            return View(lstQ);
         }
 
         [HttpPost]
