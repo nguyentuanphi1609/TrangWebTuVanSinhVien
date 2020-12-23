@@ -34,7 +34,7 @@
                             @Html.ActionLink("Duyệt", "Duyet",new { id=item.QuestionID})
                         </td>
                         <td></td>
-                        <td></td>
+                        <td>@Html.ActionLink("Xóa", "Xoa", new { id = item.QuestionID})</td>
                     </tr>
                 }
             </tbody>
