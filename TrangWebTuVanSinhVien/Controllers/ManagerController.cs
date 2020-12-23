@@ -66,7 +66,24 @@ namespace TrangWebTuVanSinhVien.Controllers
             List<QUESTIONNOTCHECK> lst = new List<QUESTIONNOTCHECK>();
 
             lst = getListQuestionNotCheck();
+            return View(lst);
+        }
+
+        public ActionResult Xoa(int id)
+        {
+            using(var db = new DBTuVanSinhVien())
+            {
+                var ask = (from u in db.QUESTIONNOTCHECKs
+                           where u.QuestionID == id
+                           select u).FirstOrDefault<QUESTIONNOTCHECK>();
+                db.QUESTIONNOTCHECKs.Remove(ask);
+                db.SaveChanges();
+                
+            }
+            List<QUESTIONNOTCHECK> lst = new List<QUESTIONNOTCHECK>();
+            lst = getListQuestionNotCheck();
             return View("Manager", lst);
+
         }
 
         public List<QUESTIONNOTCHECK> getListQuestionNotCheck()
