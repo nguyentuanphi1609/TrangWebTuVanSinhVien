@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="92a64c8b923b407eac26ca14809948cc" Name="Diagram1">
+        <EntityTypeShape EntityType="WebTuVanSinhVienModel.ADMIN" Width="1.5" PointX="3" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebTuVanSinhVienModel.FIELD" Width="1.5" PointX="3.75" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebTuVanSinhVienModel.MANAGER" Width="1.5" PointX="3" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebTuVanSinhVienModel.QUESTIONANDANSWER" Width="1.5" PointX="7.5" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebTuVanSinhVienModel.QUESTIONNOTCHECK" Width="1.5" PointX="5.25" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebTuVanSinhVienModel.QUESTIONQUEUE" Width="1.5" PointX="8.5" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebTuVanSinhVienModel.STUDENT" Width="1.5" PointX="3" PointY="17.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebTuVanSinhVienModel.TEACHER" Width="1.5" PointX="6" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebTuVanSinhVienModel.USER" Width="1.5" PointX="0.75" PointY="8.375" IsExpanded="true" />
+        <AssociationConnector Association="WebTuVanSinhVienModel.FK__ADMIN__IDUser__33D4B598" ManuallyRouted="false" />
+        <AssociationConnector Association="WebTuVanSinhVienModel.FK__MANAGER__IDField__34C8D9D1" ManuallyRouted="false" />
+        <AssociationConnector Association="WebTuVanSinhVienModel.FK__QUESTIONA__IDFie__36B12243" ManuallyRouted="false" />
+        <AssociationConnector Association="WebTuVanSinhVienModel.FK__QUESTIONN__IDFie__38996AB5" ManuallyRouted="false" />
+        <AssociationConnector Association="WebTuVanSinhVienModel.FK__TEACHER__IDField__3F466844" ManuallyRouted="false" />
+        <AssociationConnector Association="WebTuVanSinhVienModel.FK_QUESTIONQUEUE_FIELD" ManuallyRouted="false" />
+        <AssociationConnector Association="WebTuVanSinhVienModel.FK__MANAGER__IDUser__35BCFE0A" ManuallyRouted="false" />
+        <AssociationConnector Association="WebTuVanSinhVienModel.FK__QUESTIONA__Quest__37A5467C" ManuallyRouted="false" />
+        <AssociationConnector Association="WebTuVanSinhVienModel.FK__QUESTIONN__IDStu__398D8EEE" ManuallyRouted="false" />
+        <AssociationConnector Association="WebTuVanSinhVienModel.FK__QUESTIONN__IDUse__3A81B327" ManuallyRouted="false" />
+        <AssociationConnector Association="WebTuVanSinhVienModel.FK_QUESTIONQUEUE_QUESTIONNOTCHECK" ManuallyRouted="false" />
+        <AssociationConnector Association="WebTuVanSinhVienModel.FK_QUESTIONQUEUE_USERS" ManuallyRouted="false" />
+        <AssociationConnector Association="WebTuVanSinhVienModel.FK__STUDENT__IDUser__3E52440B" ManuallyRouted="false" />
+        <AssociationConnector Association="WebTuVanSinhVienModel.FK__TEACHER__IDUser__403A8C7D" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

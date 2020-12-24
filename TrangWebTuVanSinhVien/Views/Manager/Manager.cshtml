@@ -8,40 +8,49 @@
 <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 
 <div>
-
-</div>
-
-<div>
     @using (Html.BeginForm())
     {
-        <table class="table table-dark table-hover">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Câu Hỏi</th>
-                    <th>Duyệt</th>
-                    <th>Chuyển giao</th>
-                    <th>Xóa</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td name ="id">@item.QuestionID</td>
-                        <td>@item.Question</td>
-                        <td>
-                            @Html.ActionLink("Duyệt", "Duyet",new { id=item.QuestionID})
-                        </td>
-                        <td></td>
-                        <td>@Html.ActionLink("Xóa", "Xoa", new { id = item.QuestionID})</td>
-                    </tr>
-                }
-            </tbody>
+        <div class="row bg-light no-gutters" style="min-height: calc(100vh - 56px)">
+            <div class="col">
+                <div class="container py-0" role="alert">
+                    <div class="row py-0 justify-content-center">
+                        <h2 class="my-4 text-center align-content-center">QUẢN LÝ CÂU HỎI</h2>
+                        <div class="col-12">
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th class="text-nowrap">ID</th>
+                                            <th class="text-nowrap">Câu Hỏi</th>
+                                            <th class="text-nowrap">Duyệt</th>
+                                            <th class="text-nowrap">Chuyển giao</th>
+                                            <th class="text-nowrap">Xóa</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td name="id" class="text-nowrap">@item.QuestionID</td>
+                                                <td class="text-nowrap">@item.Question</td>
+                                                <td class="text-nowrap">
+                                                    @Html.ActionLink("Duyệt", "Duyet", new { id = item.QuestionID })
+                                                </td>
+                                                <td class="text-nowrap"></td>
+                                                <td class="text-nowrap">@Html.ActionLink("Xóa", "Xoa", new { id = item.QuestionID })</td>
+                                            </tr>
+                                        }
+                                    </tbody>
 
 
 
-        </table>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     }
 
 </div>

@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="WebTuVanSinhVienModelStoreContainer" CdmEntityContainer="DBTuVanSinhVien">
+    <EntitySetMapping Name="ADMINs">
+      <EntityTypeMapping TypeName="WebTuVanSinhVienModel.ADMIN">
+        <MappingFragment StoreEntitySet="ADMIN">
+          <ScalarProperty Name="IDSC" ColumnName="IDSC" />
+          <ScalarProperty Name="ScoreChange" ColumnName="ScoreChange" />
+          <ScalarProperty Name="DateOfSC" ColumnName="DateOfSC" />
+          <ScalarProperty Name="Reason" ColumnName="Reason" />
+          <ScalarProperty Name="IDUser" ColumnName="IDUser" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FIELDs">
+      <EntityTypeMapping TypeName="WebTuVanSinhVienModel.FIELD">
+        <MappingFragment StoreEntitySet="FIELD">
+          <ScalarProperty Name="IDField" ColumnName="IDField" />
+          <ScalarProperty Name="NameOfField" ColumnName="NameOfField" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MANAGERs">
+      <EntityTypeMapping TypeName="WebTuVanSinhVienModel.MANAGER">
+        <MappingFragment StoreEntitySet="MANAGER">
+          <ScalarProperty Name="IDManage" ColumnName="IDManage" />
+          <ScalarProperty Name="Score" ColumnName="Score" />
+          <ScalarProperty Name="IDUser" ColumnName="IDUser" />
+          <ScalarProperty Name="IDField" ColumnName="IDField" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="QUESTIONANDANSWERs">
+      <EntityTypeMapping TypeName="WebTuVanSinhVienModel.QUESTIONANDANSWER">
+        <MappingFragment StoreEntitySet="QUESTIONANDANSWER">
+          <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+          <ScalarProperty Name="Answer" ColumnName="Answer" />
+          <ScalarProperty Name="TimeOut" ColumnName="TimeOut" />
+          <ScalarProperty Name="DateOfAnswer" ColumnName="DateOfAnswer" />
+          <ScalarProperty Name="IDField" ColumnName="IDField" />
+          <ScalarProperty Name="Question" ColumnName="Question" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="QUESTIONNOTCHECKs">
+      <EntityTypeMapping TypeName="WebTuVanSinhVienModel.QUESTIONNOTCHECK">
+        <MappingFragment StoreEntitySet="QUESTIONNOTCHECK">
+          <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+          <ScalarProperty Name="IDStu" ColumnName="IDStu" />
+          <ScalarProperty Name="IDUser" ColumnName="IDUser" />
+          <ScalarProperty Name="IDField" ColumnName="IDField" />
+          <ScalarProperty Name="Question" ColumnName="Question" />
+          <ScalarProperty Name="Checked" ColumnName="Checked" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="QUESTIONQUEUEs">
+      <EntityTypeMapping TypeName="WebTuVanSinhVienModel.QUESTIONQUEUE">
+        <MappingFragment StoreEntitySet="QUESTIONQUEUE">
+          <ScalarProperty Name="IDField" ColumnName="IDField" />
+          <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+          <ScalarProperty Name="DateOfModeration" ColumnName="DateOfModeration" />
+          <ScalarProperty Name="IDUser" ColumnName="IDUser" />
+          <ScalarProperty Name="Question" ColumnName="Question" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="STUDENTs">
+      <EntityTypeMapping TypeName="WebTuVanSinhVienModel.STUDENT">
+        <MappingFragment StoreEntitySet="STUDENT">
+          <ScalarProperty Name="IDStu" ColumnName="IDStu" />
+          <ScalarProperty Name="IDUser" ColumnName="IDUser" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TEACHERs">
+      <EntityTypeMapping TypeName="WebTuVanSinhVienModel.TEACHER">
+        <MappingFragment StoreEntitySet="TEACHER">
+          <ScalarProperty Name="IDTea" ColumnName="IDTea" />
+          <ScalarProperty Name="Score" ColumnName="Score" />
+          <ScalarProperty Name="IDUser" ColumnName="IDUser" />
+          <ScalarProperty Name="IDField" ColumnName="IDField" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="USERS">
+      <EntityTypeMapping TypeName="WebTuVanSinhVienModel.USER">
+        <MappingFragment StoreEntitySet="USERS">
+          <ScalarProperty Name="IDUser" ColumnName="IDUser" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+          <ScalarProperty Name="Sex" ColumnName="Sex" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Permission" ColumnName="Permission" />
+          <ScalarProperty Name="PassWord" ColumnName="PassWord" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

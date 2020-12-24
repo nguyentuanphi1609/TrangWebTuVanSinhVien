@@ -20,9 +20,9 @@ namespace TrangWebTuVanSinhVien.Models
             this.ADMINs = new HashSet<ADMIN>();
             this.MANAGERs = new HashSet<MANAGER>();
             this.QUESTIONNOTCHECKs = new HashSet<QUESTIONNOTCHECK>();
+            this.QUESTIONQUEUEs = new HashSet<QUESTIONQUEUE>();
             this.STUDENTs = new HashSet<STUDENT>();
             this.TEACHERs = new HashSet<TEACHER>();
-            this.QUESTIONQUEUEs = new HashSet<QUESTIONQUEUE>();
         }
     
         public int IDUser { get; set; }
@@ -42,10 +42,10 @@ namespace TrangWebTuVanSinhVien.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<QUESTIONNOTCHECK> QUESTIONNOTCHECKs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<QUESTIONQUEUE> QUESTIONQUEUEs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<STUDENT> STUDENTs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TEACHER> TEACHERs { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<QUESTIONQUEUE> QUESTIONQUEUEs { get; set; }
     }
 }

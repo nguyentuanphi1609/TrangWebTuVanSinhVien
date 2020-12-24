@@ -6,76 +6,93 @@
 }
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>
 
-<h2>Ask</h2>
 
-<div>
-    <div id="Ask">
-        @using (Html.BeginForm())
-        {
-            @Html.AntiForgeryToken()
-            <div id="field" class="form-group">
-                <label for="dropdownlist" class="control-label col-md-2">Lĩnh vực</label>
-                <div class="col-md-10">
-                    <select id="dropdownlist" class="form-control" name="dropdownlist">
-                        @foreach (var lst in ViewBag.listfield)
+<div class="row bg-light no-gutters align-items-center" style="min-height: calc(100vh - 56px)">
+    <div class="col">
+        <div class="container py-0" role="alert">
+            <div class="row py-0 justify-content-center">
+                <div class="col-12 col-md-10 col-xl-8 py-3" style="border-radius:10px">
+                    <h2 class="mb-4 text-center align-content-center">ĐẶT CÂU HỎI</h2>
+                    <div id="Ask">
+                        @using (Html.BeginForm())
                         {
-                            <option>@lst</option>;
-                        }
-                    </select>
+                            @Html.AntiForgeryToken()
+
+                            <div id="field" class="form-group form-row align-items-center">
+                                <label for="dropdownlist" class="control-label col-2"><b>Lĩnh vực</b></label>
+                                <div class="col">
+                                    <select id="dropdownlist" class="form-control" name="dropdownlist">
+                                        @foreach (var lst in ViewBag.listfield)
+                                        {
+                                            <option>@lst</option>
+                                            ;
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div id="question" class="form-group form-row align-items-center">
+                                <label for="askcontent" class="control-label col-2"><b>Câu hỏi</b></label>
+                                <div class="col"><input type="text" id="askcontent" class="form-control" name="askcontent" /></div>
+                            </div>
+
+                            <div class="form-group form-row mb-3">
+                                <div class="col-12 d-flex">
+                                    @Html.ActionLink("Trở về", "Index", "Home", null, new { @class = "btn btn-secondary btn-login-page ml-auto" })
+                                    <button type="submit" class="btn btn-primary btn-login-page ml-2">
+                                        Đặt câu hỏi
+                                    </button>
+                                </div>
+                            </div>
+                         }
+
+                    </div>
+                </div>
+                <div class="w-100">
+
+                </div>
+                <div class="col-12">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th class="text-nowrap">
+                                        Câu hỏi
+                                    </th>
+                                    <th class="text-nowrap">
+                                        Câu trả lời
+                                    </th>
+                                    <th class="text-nowrap">
+                                        Ngày trả lời
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td >
+                                            @*@Html.DisplayFor(modelItem => item.Question)*@
+                                            @item.Question
+                                        </td>
+                                        <td >
+                                            @*@Html.DisplayFor(modelItem => item.Answer)*@
+                                            @item.Answer
+                                        </td>
+                                        <td class="text-nowrap">
+                                            @*@Html.DisplayFor(modelItem => item.DateOfAnswer)*@
+                                            @item.DateOfAnswer.Value.ToString("yyyy-MM-dd")
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+
+                        </table>
+                    </div>
                 </div>
             </div>
-
-            <div id="question" class="form-group">
-                <label for="askcontent" class="control-label col-md-2">Câu hỏi</label>
-                <div class="col-md-10"><input type="text" id="askcontent" class="form-control" name="askcontent" /></div>
-            </div>
-
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Đặt câu hỏi" class="btn btn-default" />
-            </div>
-        }
-
+        </div>
     </div>
 </div>
 
-<div>
 
-    <table class="table table-bordered table-hover">
-        <thead>
-            <tr>
-                <th>
-                    Câu hỏi
-                </th>
-                <th>
-                    Câu trả lời
-                </th>
-                <th>
-                    Ngày trả lời
-                </th>
-
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Question)
-                    </td>
-
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Answer)
-                    </td>
-
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DateOfAnswer)
-                    </td>
-
-
-                </tr>
-
-            }
-        </tbody>
-
-    </table>
-</div>

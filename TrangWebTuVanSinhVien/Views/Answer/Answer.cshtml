@@ -7,35 +7,46 @@
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>
 @using (Html.BeginForm())
 {
-    <table class="table table-dark table-hover">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Câu Hỏi</th>
-                <th>Nhập câu trả lời</th>
-                <th>Trả lời</th>
-                <th>Xóa</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
+    <div class="row bg-light no-gutters" style="min-height: calc(100vh - 56px)">
+        <div class="col">
+            <div class="container py-0" role="alert">
+                <div class="row py-0 justify-content-center">
+                    <h2 class="my-4 text-center align-content-center">TRẢ LỜI CÂU HỎI</h2>
+                    <div class="col-12">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th class="text-nowrap">ID</th>
+                                        <th class="text-nowrap">Câu Hỏi</th>
+                                        <th class="text-nowrap">Nhập câu trả lời</th>
+                                        <th class="text-nowrap">Trả lời</th>
+                                        <th class="text-nowrap">Xóa</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
 
-                <tr class="@Url.Content("trAnswer trAnswer"+item.QuestionID)" data-id="@item.QuestionID">
-                    <td name="id">@item.QuestionID</td>
-                    <td>@item.Question</td>
-                    <td><input type="text"  class ="@Url.Content("txtAnswer txtAnswer"+item.QuestionID)"/></td>
-                    <td>
-                        @Html.ActionLink("Trả lời", "Reply",new { id = item.QuestionID} ,new { @class = "Reply" })
-                    </td>
-                    <td>
-                        Xóa
-                    </td>
-                </tr>
-                
-            }
-        </tbody>
-    </table>
+                                        <tr class="@Url.Content("trAnswer trAnswer"+item.QuestionID)" data-id="@item.QuestionID">
+                                            <td name="id" class="text-nowrap">@item.QuestionID</td>
+                                            <td class="text-nowrap">@item.Question</td>
+                                            <td class="text-nowrap"><input type="text" class="@Url.Content("txtAnswer txtAnswer"+item.QuestionID)" /></td>
+                                            <td class="text-nowrap">
+                                                @Html.ActionLink("Trả lời", "Reply", new { id = item.QuestionID }, new { @class = "Reply" })
+                                            </td>
+                                            <td class="text-nowrap">Xóa</td>
+                                        </tr>
+
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 }
 <script>
     
