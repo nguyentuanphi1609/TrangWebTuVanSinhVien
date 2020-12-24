@@ -66,7 +66,7 @@ namespace TrangWebTuVanSinhVien.Controllers
             List<QUESTIONNOTCHECK> lst = new List<QUESTIONNOTCHECK>();
 
             lst = getListQuestionNotCheck();
-            return View(lst);
+            return View("Manager", lst);
         }
 
         public ActionResult Xoa(int id)
